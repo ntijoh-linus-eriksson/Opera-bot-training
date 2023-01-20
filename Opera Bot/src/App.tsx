@@ -1,20 +1,29 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { Link, Route, Routes } from 'react-router-dom'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import Home from './views/HomeView'
+import Counter from './components/CounterComponent'
+import About from './views/AboutView'
 
+
+function App() {
   return (
     <div className="App">
-      <div>
-        <h1>Hello World!</h1>
-      </div>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
+      <nav>
+        <h1><Link to="/">Title</Link></h1>
+        
+        <ul>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/counter">Counter</Link></li>
+        </ul>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/counter" element={<Counter />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </div>
   )
 }
