@@ -20,28 +20,28 @@ const Register = () => {
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             type="text"
-            placeholder="Enter a term"
+            placeholder="FullName"
             className="input"
           />
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="text"
-            placeholder="Enter a term"
+            placeholder="Email"
             className="input"
           />
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type="text"
-            placeholder="Enter a term"
+            placeholder="Password"
             className="input"
           />
           <input
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             type="text"
-            placeholder="Enter a term"
+            placeholder="PhoneNumber"
             className="input"
           />
           <button type="submit" className="btn">Submit</button>
