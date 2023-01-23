@@ -1,37 +1,54 @@
-import React from "react";
-import Grid from "@mui/material/Grid";
-import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import TextField from "@mui/material/TextField"
-import Button  from "@mui/material/Button";
+import React, { useState } from 'react'
 
-export interface RegisterProps {}
 
-const Register: React.FunctionComponent<RegisterProps> = (props) => {
+const Register = () => {
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+
+  
+    const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+        console.log(fullName, email, password, phoneNumber);
+    }
+  
     return (
-        <div>
-            <Grid container spacing={1} border="solid 2px grey" margin="10px" borderRadius={2}>
-                <Grid xs={12} margin="5px">
-                    <TextField id="outlined-basic" label="Full Name" variant="outlined" fullWidth />
-                </Grid>
+      <div className="container">
+        <form onSubmit={submitForm}>
+          <input
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            type="text"
+            placeholder="Enter a term"
+            className="input"
+          />
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="Enter a term"
+            className="input"
+          />
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="text"
+            placeholder="Enter a term"
+            className="input"
+          />
+          <input
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            type="text"
+            placeholder="Enter a term"
+            className="input"
+          />
+          <button type="submit" className="btn">Submit</button>
+        </form>
+      </div>
+    );
+  };
 
-                <Grid xs={12} margin="5px">
-                    <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth/>
-                </Grid>
-
-                <Grid xs={12} margin="5px">
-                    <TextField id="outlined-basic" label="Password" variant="outlined" fullWidth/>
-                </Grid>
-
-                <Grid xs={12} margin="5px">
-                    <TextField id="outlined-basic" label="PhoneNumber" variant="outlined" fullWidth/>
-                </Grid>
-                
-                <Grid margin="5px">
-                    <Button variant="contained">Register</Button>
-                </Grid>
-            </Grid>
-        </div>
-    )
-}
-
-export default Register;
+  export default Register;
+  
