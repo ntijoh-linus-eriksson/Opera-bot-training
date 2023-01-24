@@ -5,24 +5,23 @@ import './App.css'
 import Home from './views/HomeView'
 import Counter from './components/CounterComponent'
 import About from './views/AboutView'
+import ErrorPage from './components/ErrorPage'
 
 
 function App() {
   return (
     <div className="App">
-      <nav>
+      <nav className="fixed flex column justify-evenly items-center bg-slate-700 w-screen h-14">
         <h1><Link to="/">Title</Link></h1>
-        
-        <ul>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/counter">Counter</Link></li>
-        </ul>
+        <h2><Link to="/about">About</Link></h2>
+        <h2><Link to="/counter">Counter</Link></h2>
       </nav>
-
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/counter" element={<Counter />} />
         <Route path="/about" element={<About />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   )
