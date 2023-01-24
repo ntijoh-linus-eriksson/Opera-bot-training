@@ -30,6 +30,7 @@ const Register = () => {
             placeholder="Email"
             className="input"
           />
+          <br />
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -44,6 +45,7 @@ const Register = () => {
             placeholder="PhoneNumber"
             className="input"
           />
+          <br />
           <button type="submit" className="btn">Submit</button>
         </form>
       </div>

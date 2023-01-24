@@ -14,11 +14,11 @@ function App() {
   return (
     <div className="App">
       <nav>
-        {/* <h1><Link to="/">Title</Link></h1> */}
+        <h1><Link to="/">Title</Link></h1>
         
         <ul>
-          {/* <li><Link to="/about">About</Link></li>
-          <li><Link to="/counter">Counter</Link></li> */}
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/counter">Counter</Link></li>
           <li><Link to="/register">Register</Link></li>
           <li><Link to="/login">Login</Link></li>
 
