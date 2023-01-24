@@ -5,6 +5,9 @@ import './App.css'
 import Home from './views/HomeView'
 import Counter from './components/CounterComponent'
 import About from './views/AboutView'
+import Register from './views/RegisterView'
+import Login from './views/LoginView'
+
 import ErrorPage from './components/ErrorPage'
 
 
@@ -15,12 +18,18 @@ function App() {
         <h1><Link to="/">Title</Link></h1>
         <h2><Link to="/about">About</Link></h2>
         <h2><Link to="/counter">Counter</Link></h2>
+        <h2><Link to="/register">Register</Link></h2>
+        <h2><Link to="/login">Login</Link></h2>
       </nav>
       
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/counter" element={<Counter />} />
         <Route path="/about" element={<About />} />
+        <Route path="/register" element={<Register/>} />
+        <Route path="/login" element={<Login />} />
+
+
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
