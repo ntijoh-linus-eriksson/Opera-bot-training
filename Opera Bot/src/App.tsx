@@ -14,7 +14,7 @@ import ErrorPage from './components/ErrorPage'
 function App() {
   return (
     <div className="App">
-      <nav className="fixed flex column justify-evenly items-center bg-slate-700 w-screen h-14">
+      <nav className="flex column justify-evenly items-center bg-slate-700 w-screen h-14">
         <h1><Link to="/">Title</Link></h1>
         <h2><Link to="/about">About</Link></h2>
         <h2><Link to="/counter">Counter</Link></h2>
@@ -28,8 +28,6 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register/>} />
         <Route path="/login" element={<Login />} />
-
-
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
