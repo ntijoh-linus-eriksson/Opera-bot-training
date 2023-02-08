@@ -29,9 +29,9 @@ const Register = ({ initialUsers } : any ) => {
           onSubmit={async (e) => {
             e.preventDefault()
             const body: Prisma.UserCreateInput = { email, username, password, isAdmin, alias }
-            await fetcher("/api/createUser", { user : body})
+            await fetcher("/api/user/createUser", { user : body})
             console.log(body)
-            await setUsers([...users, body])
+            setUsers([...users, body])
             console.log(users)
           }}
         >
