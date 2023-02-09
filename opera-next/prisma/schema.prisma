@@ -17,7 +17,7 @@ model User {
   username  String    @unique
   password  String    @unique
   alias     String     
-  role      Role      @default(USER)
+  isAdmin   Boolean   @default(false)
   posts     Post[]
   comments  Comment[]
 }
@@ -41,9 +41,4 @@ model Comment {
   content     String   @db.VarChar(3000)
   commenter   User?    @relation(fields: [commenterId], references: [id])
   commenterId Int?
-}
-
-enum Role {
-  USER
-  ADMIN
 }

@@ -1,51 +1,45 @@
 "use client"
 
 import React, { useState } from 'react'
+import { Prisma } from '@prisma/client'
+import { fetcher } from "../../utils/fetcher"
+import prisma from "../../lib/prisma"
 
-const Register = () => {
-
-    const [users, setUsers] = useState([
-    {
-      name: "Jonas Eriksson",
-      email: "Jonas@eriksson.com",
-      password: "123",
-      phoneNumber: "0723654"
-    },
-    {
-      name: "Japp Eriksson",
-      email: "japp@eriksson.com",
-      password: "321",
-      phoneNumber: "0725654"
-    },
-    {
-      name: "Stefan Eriksson",
-      email: "Stefan@eriksson.com",
-      password: "iskor",
-      phoneNumber: "072543684"
-    }
-  ])
-
-  const submitForm = (event: React.FormEvent<HTMLFormElement>, name : string, email : string, password : string, phoneNumber : string) => {
-    event.preventDefault()
-    setUsers([...users, {name, email, password, phoneNumber}])
+export async function getProps() {
+  const users: Prisma.UserUncheckedCreateInput[] = await prisma.user.findMany()
+  return {
+    props: { initialUsers : users }
   }
+}
 
-    const [fullName, setFullName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-  
-    console.log(users)
+const Register = ({ initialUsers } : any ) => {
 
+  const [users, setUsers] = useState<Prisma.UserUncheckedCreateInput[]>(initialUsers)
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false)
+  const [alias, setAlias] = useState('')
+
+  const toggleChecked = () => setIsAdmin(value => !value)
   
     return (
       <div className="container">
-        <form onSubmit={(e) => submitForm(e, fullName, email, password, phoneNumber)}>
+        <form 
+          onSubmit={async (e) => {
+            e.preventDefault()
+            const body: Prisma.UserCreateInput = { email, username, password, isAdmin, alias }
+            await fetcher("/api/user/createUser", { user : body})
+            console.log(body)
+            setUsers([...users, body])
+            console.log(users)
+          }}
+        >
           <input
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             type="text"
-            placeholder="FullName"
+            placeholder="Username"
             className="input"
           />
           <input
@@ -63,13 +57,17 @@ const Register = () => {
             placeholder="Password"
             className="input"
           />
+          <br />
           <input
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            value={alias}
+            onChange={(e) => setAlias(e.target.value)}
             type="text"
-            placeholder="PhoneNumber"
+            placeholder="Alias"
             className="input"
           />
+          <br />
+          <label placeholder=''>Check this if you are admin, dont lie</label>
+          <input type="checkbox" checked={isAdmin} onChange={toggleChecked}/>
           <br />
           <button type="submit" className="btn">Submit</button>
         </form>
