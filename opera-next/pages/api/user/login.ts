@@ -7,12 +7,20 @@ export default async function getAllGuides(req: NextApiRequest, res: NextApiResp
     }
     
     try {
-        const { user } = req.body
-        const savedUser = await prisma.user.create({
-            data:user
+        const input = req.body
+        console.log( input )
+        const user = await prisma.user.findUnique({
+            where: { email: input.email }
         })
-        res.status(200).json(savedUser)
-    }   catch (error) {
-        res.status(400).json({ message: 'something went wrong'})
+ 
+        if (!user || !(user.password === input.password)) {
+            return res.status(400).json({ message: 'Wrong email or password' })
+        }
+
+        res.status(200).json(user)
+    }   
+    catch (error) {
+        console.log(error)
+        res.status(400).json({ message: error})
     }
 }

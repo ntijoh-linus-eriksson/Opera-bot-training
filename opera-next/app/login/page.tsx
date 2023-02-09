@@ -23,11 +23,8 @@ const Login = ({ initialUsers } : any ) => {
         <form 
           onSubmit={async (e) => {
             e.preventDefault()
-            const body: Prisma.UserCreateInput = { email, password }
-            await fetcher("/api/user/login", { user : body})
-            console.log(body)
-            setUsers([...users, body])
-            console.log(users)
+            const body: Prisma.UserUncheckedCreateInput = {email, password}
+            await fetcher("/api/user/login", body )
           }}
         >
           <input
