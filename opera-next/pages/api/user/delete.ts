@@ -2,9 +2,11 @@ import { NextApiRequest, NextApiResponse } from "next"
 import prisma from "../../../lib/prisma"
 
 export default async function getAllGuides(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method !== 'DELETE') {
-        res.status(405).json({message: "Method not allowed"})
+    if (req.method !== 'POST') {
+        return res.status(405).json({message: "Method not allowed"})
     }
+
+    console.log(req.headers)
     
     try {
         const { id } = req.body

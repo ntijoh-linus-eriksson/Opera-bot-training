@@ -4,6 +4,7 @@ import React, { use, useState } from 'react'
 import { Prisma } from '@prisma/client'
 import { fetcher } from "../../utils/fetcher"
 import prisma from "../../lib/prisma"
+import { sign } from 'crypto'
 
 export async function getProps() {
   const users: Prisma.UserUncheckedCreateInput[] = await prisma.user.findMany()
@@ -14,11 +15,11 @@ export async function getProps() {
 
 const Register = ({ initialUsers } : any ) => {
   const [users, setUsers] = useState<Prisma.UserUncheckedCreateInput[]>(initialUsers)
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("Hej@hej.hej");
+  const [username, setUsername] = useState("Kalle");
+  const [password, setPassword] = useState("femtiofem");
   const [isAdmin, setIsAdmin] = useState(false)
-  const [alias, setAlias] = useState('')
+  const [alias, setAlias] = useState("smyg bög")
 
   const toggleChecked = () => setIsAdmin(value => !value)
   

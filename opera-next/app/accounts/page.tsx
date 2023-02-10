@@ -3,6 +3,7 @@ import { fetcher } from "@/utils/fetcher"
 import { Prisma } from "@prisma/client"
 import { use } from "react"
 import styles from "./accounts.module.css"
+import DeleteButton from "./deleteButton"
 
 export async function getProps() {
     const users: Prisma.UserUncheckedCreateInput[] = await prisma.user.findMany()
@@ -37,7 +38,7 @@ export default  function Accounts() {
                         {u.createdAt?.toString()}
                     </th>
                     <th className={styles.tableHead}>
-                        <button className={styles.deleteButton}>Delete</button>
+                        <DeleteButton key={index} id={u.id} />
                     </th>
                 </tr>
             ))}
