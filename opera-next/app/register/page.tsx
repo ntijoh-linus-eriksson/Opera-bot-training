@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { use, useState } from 'react'
 import { Prisma } from '@prisma/client'
 import { fetcher } from "../../utils/fetcher"
 import prisma from "../../lib/prisma"
@@ -13,7 +13,6 @@ export async function getProps() {
 }
 
 const Register = ({ initialUsers } : any ) => {
-
   const [users, setUsers] = useState<Prisma.UserUncheckedCreateInput[]>(initialUsers)
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
